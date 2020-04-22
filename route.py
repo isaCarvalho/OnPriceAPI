@@ -1,6 +1,5 @@
 import flask
 from flask import request, jsonify
-from validate import messages
 from store_controller import StoreController
 from product_controller import ProductController
 
@@ -18,7 +17,7 @@ def home():
 # Returns a store by id or a list of all the stores in the system
 @app.route('/' + baseUrlStores, methods = ['GET'])
 def getStores():
-    return jsonify(StoreController().list(request))
+    return jsonify(StoreController().list(request, 'stores'))
 
 # Inserts a store in the database
 @app.route('/' + baseUrlStores, methods = ['POST'])
@@ -34,13 +33,13 @@ def putStore():
 # Deletes a store
 @app.route('/' + baseUrlStores, methods = ['DELETE'])
 def deleteStore():
-    return StoreController().delete(request)
+    return StoreController().delete(request, 'stores')
 
 
 # Return a products by it's id or all products
 @app.route('/' + baseUrlProducts, methods = ['GET'])
 def getProducts():
-    return jsonify(ProductController().list(request))
+    return jsonify(ProductController().list(request, 'products'))
 
 # Insert a product
 @app.route('/' + baseUrlProducts, methods = ['POST'])
@@ -55,7 +54,7 @@ def putProducts():
 # Deletes a product
 @app.route('/' + baseUrlProducts, methods = ['DELETE'])
 def deleteProduct():
-    return ProductController().delete(request)
+    return ProductController().delete(request, 'products')
 
 # Returns the products of a store
 @app.route('/' + baseUrlStores + '/' + baseUrlProducts, methods = ['GET'])

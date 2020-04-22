@@ -1,13 +1,8 @@
 from connect import query_statement, execute_statement
-from validate import validate_field
+from validate import validate_field, messages
+from controller import Controller
 
-class ProductController:
-
-    def list(self, request):
-        id = validate_field(request.args)
-
-        return query_statement('SELECT * FROM products WHERE id = {:d}'.format(id)) if id != -1 else query_statement('SELECT * FROM products')
-
+class ProductController (Controller):
 
     def insert(self, request):
 
@@ -23,18 +18,13 @@ class ProductController:
         if (id != -1):
             statement = 'INSERT INTO products (name, quantity, unity, category, stamp, price, id_store) VALUES ({}, {}, {}, {}, {}, {}, {:d})'.format(name, quantity, unity, category, stamp, price, id_store)
         else:
-            statement = 'UPDATE products SET name = {} AND quantity = {} AND unity = {} AND category = {} AND = stamp = {} AND price = {} AND id_store = {:d} WHERE id = {:d}'.format(name, quantity, unity, category, stamp, price, id_store, id)
+            statement = 'UPDATE products SET name = {} AND quantity = {} AND unity = {} AND category = {} AND stamp = {} AND price = {} AND id_store = {:d} WHERE id = {:d}'.format(name, quantity, unity, category, stamp, price, id_store, id)
 
         execute_statement(statement)
 
         return 'Data changed!'
 
-    def delete(self, request):
-        id = validate_field(request.args, 'id')
-
-        return execute_statement('DELETE FROM products WHERE id = {:d}'.format(id)) if id != -1 else messages['NO_ID']
-
     def listByStores(self, request):
         id = validate_field(request.args)
 
-        return query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id)) if id != -1 else query_statement('SELECT * FROM products GROUP BY id_store')
+        return query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id)) if id != -1 else messages['NO_ID']

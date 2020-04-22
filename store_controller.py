@@ -1,13 +1,8 @@
 from connect import query_statement, execute_statement
-from validate import validate_field
+from validate import validate_field, messages
+from controller import Controller
 
-class StoreController:
-
-    def list(self, request):
-        id = validate_field(request.args)
-
-        return query_statement('SELECT * FROM stores WHERE id = {:d}'.format(id)) if id != -1 else query_statement('SELECT * FROM stores')
-
+class StoreController (Controller):
 
     def insert(self, request):
 
@@ -25,13 +20,8 @@ class StoreController:
         if (id != -1):
             statement = 'INSERT INTO stores (name, password, cnpj, street, bairro, number, city, uf, time) VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {})'.format(name, password, cnpj, street, bairro, number, city, uf, time)
         else:
-            statement = 'UPDATE stores SET name = {} AND password = {} AND cnpj = {} AND street = {} AND = bairro = {} AND number = {} AND city = {} AND uf = {} AND time = {} WHERE id = {:d}'.format(name, password, cnpj, street, bairro, number, city, uf, time, id)
+            statement = 'UPDATE stores SET name = {} AND password = {} AND cnpj = {} AND street = {} AND bairro = {} AND number = {} AND city = {} AND uf = {} AND time = {} WHERE id = {:d}'.format(name, password, cnpj, street, bairro, number, city, uf, time, id)
 
         execute_statement(statement)
 
         return 'Data changed!'
-
-    def delete(self, request):
-        id = validate_field(request.args, 'id')
-
-        return execute_statement('DELETE FROM stores WHERE id = {:d}'.format(id)) if id != -1 else messages['NO_ID']
