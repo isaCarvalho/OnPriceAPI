@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS stores;
+DROP SEQUENCE IF EXISTS products_seq;
+DROP SEQUENCE IF EXISTS stores_seq;
+
 CREATE TABLE stores (
 	id int primary key,
 	name varchar(255) not null,
@@ -7,7 +12,7 @@ CREATE TABLE stores (
 	number varchar(11) not null,
 	bairro varchar(255) not null,
 	city varchar(255) not null,
-	uf varchar(2) not null,
+	uf varchar(12) not null,
 	time varchar(255) not null
 );
 
@@ -22,7 +27,7 @@ CREATE TABLE products (
 	quantity int not null,
 	unity varchar(255) not null,
 	stamp varchar(255) not null,
-	id_store int not null references stores(id)
+	id_store int not null references stores(id) on delete cascade
 );
 
 CREATE SEQUENCE products_seq START 1 INCREMENT 1 MINVALUE 1;

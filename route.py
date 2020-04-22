@@ -33,7 +33,7 @@ def putStore():
 # Deletes a store
 @app.route('/' + baseUrlStores, methods = ['DELETE'])
 def deleteStore():
-    return StoreController().deleteStore(request)
+    return StoreController().delete(request, 'stores')
 
 
 # Return a products by it's id or all products

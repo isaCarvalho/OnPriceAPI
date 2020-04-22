@@ -7,28 +7,24 @@ class StoreController (Controller):
 
     def insert(self, request):
 
-        name = request.form.get('name')
-        password = request.form.get('password')
-        cnpj = request.form.get('cnpj')
-        street = request.form.get('street')
-        bairro = request.form.get('bairro')
-        number = request.form.get('number')
-        city = request.form.get('city')
-        uf = request.form.get('uf')
-        time = request.form.get('time')
+        data = request.json
+
+        name = data.get('name')
+        password = data.get('password')
+        cnpj = data.get('cnpj')
+        street = data.get('street')
+        bairro = data.get('bairro')
+        number = data.get('number')
+        city = data.get('city')
+        uf = data.get('uf')
+        time = data.get('time')
         id = validate_field(request.args, 'id')
 
         if (id == -1):
             statement = "INSERT INTO stores (name, password, cnpj, street, bairro, number, city, uf, time) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(name, password, cnpj, street, bairro, number, city, uf, time)
         else:
-            statement = "UPDATE stores SET name = '{}' AND password = '{}' AND cnpj = '{}' AND street = '{}' AND bairro = '{}' AND number = '{}' AND city = '{}' AND uf = '{}' AND time = '{}' WHERE id = {:d}".format(name, password, cnpj, street, bairro, number, city, uf, time, id)
+            statement = "UPDATE stores SET name = '{}', password = '{}', cnpj = '{}', street = '{}', bairro = '{}', number = '{}', city = '{}', uf = '{}', time = '{}' WHERE id = {:d}".format(name, password, cnpj, street, bairro, number, city, uf, time, id)
 
         execute_statement(statement)
 
         return 'Data changed!'
-
-    def deleteStore(self, request):
-        if (ProductController().listByStores(request) != []):
-            return 'This store contains products, so it cannot be deleted!', 403
-
-        return super.delete(request, 'stores')
