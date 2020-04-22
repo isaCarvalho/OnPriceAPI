@@ -1,4 +1,5 @@
 from validate import validate_field, messages
+from connect import query_statement, execute_statement
 
 class Controller:
 

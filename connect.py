@@ -35,6 +35,8 @@ def execute_statement(statement = 'SELECT version()'):
         cur.execute(statement)
         cur.statusmessage
 
+        conn.commit()
+
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 
