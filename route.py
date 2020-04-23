@@ -69,5 +69,3 @@ def getStoresProducts():
 @app.errorhandler(404)
 def page_not_found(e):
     return 'This page was not found', 404
-
-app.run()
