@@ -14,6 +14,11 @@ baseUrlProducts = 'products'
 def home():
     return 'This is OnPriceApp API'
 
+# Login
+@app.route('/login', methods = ['GET'])
+def login():
+    return jsonify(StoreController().login(request))
+
 # Returns a store by id or a list of all the stores in the system
 @app.route('/' + baseUrlStores, methods = ['GET'])
 def getStores():

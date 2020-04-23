@@ -28,3 +28,14 @@ class StoreController (Controller):
         execute_statement(statement)
 
         return 'Data changed!'
+
+    def login(self, request):
+
+        name = request.args.get('name')
+        name = name.replace("%", " ")
+
+        password = request.args.get('password')
+
+        statement = "SELECT * FROM stores WHERE name = '{}' AND password = '{}'".format(name, password)
+
+        return query_statement(statement)
