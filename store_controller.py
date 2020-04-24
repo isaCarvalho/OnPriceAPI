@@ -59,7 +59,7 @@ class StoreController (Controller):
         data = Controller().list(request, "stores")
         array = []
 
-        for (i in range(0, len(data), 1)):
+        for i in range(0, len(data), 1):
             store = {
                 "id": data[0][0],
                 "name": data[0][1],
