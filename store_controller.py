@@ -38,6 +38,8 @@ class StoreController (Controller):
 
         statement = "SELECT * FROM stores WHERE name = '{}' AND password = '{}'".format(name, password)
 
+        data = query_statement(statement)
+        
         store = None
         if (len(data) != 0):
             store = {

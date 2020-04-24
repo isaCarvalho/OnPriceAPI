@@ -26,7 +26,7 @@ class ProductController (Controller):
 
         return 'Data changed!'
 
-    def listStores(self, request):
+    def listProducts(self, request):
         data = Controller().list(request, "products")
 
         return createArrayProducts(data)
