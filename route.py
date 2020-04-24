@@ -44,7 +44,7 @@ def deleteStore():
 # Return a products by it's id or all products
 @app.route('/' + baseUrlProducts, methods = ['GET'])
 def getProducts():
-    return jsonify(ProductController().listProducts(request, 'products'))
+    return jsonify(ProductController().listProducts(request))
 
 # Insert a product
 @app.route('/' + baseUrlProducts, methods = ['POST'])
