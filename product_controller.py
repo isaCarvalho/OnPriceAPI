@@ -26,19 +26,6 @@ class ProductController (Controller):
 
         return 'Data changed!'
 
-    def listProducts(self, request):
-        data = Controller().list(request, "products")
-
-        return createArrayProducts(data)
-
-
-    def listByStores(self, request):
-        id = validate_field(request.args, 'id')
-
-        data = query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id))
-
-        return createArrayProducts(data)
-
     def createArrayProducts(data):
         array = []
 
@@ -57,3 +44,17 @@ class ProductController (Controller):
             array.append(product)
 
         return array
+
+
+    def listProducts(self, request):
+        data = Controller().list(request, "products")
+
+        return createArrayProducts(data)
+
+
+    def listByStores(self, request):
+        id = validate_field(request.args, 'id')
+
+        data = query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id))
+
+        return createArrayProducts(data)
