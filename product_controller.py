@@ -49,7 +49,7 @@ class ProductController (Controller):
     def listProducts(self, request):
         data = Controller().list(request, "products")
 
-        return createArrayProducts(data)
+        return self.createArrayProducts(data)
 
 
     def listByStores(self, request):
@@ -57,4 +57,4 @@ class ProductController (Controller):
 
         data = query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id))
 
-        return createArrayProducts(data)
+        return self.createArrayProducts(data)
