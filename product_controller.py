@@ -31,14 +31,14 @@ class ProductController (Controller):
 
         for i in range(0, len(data), 1):
             product = {
-                "id": data[0][0],
-                "name": data[0][1],
-                "qt": data[0][4],
-                "unity": data[0][3],
-                "category": data[0][2],
-                "stamp": data[0][5],
-                "price": data[0][6],
-                "id_store": data[0][7]
+                "id": data[i][0],
+                "name": data[i][1],
+                "qt": data[i][4],
+                "unity": data[i][5],
+                "category": data[i][2],
+                "stamp": data[i][6],
+                "price": data[i][3],
+                "id_store": data[i][7]
             }
 
             array.append(product)
