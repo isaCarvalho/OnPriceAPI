@@ -26,7 +26,7 @@ class ProductController (Controller):
 
         return 'Data changed!'
 
-    def createArrayProducts(data):
+    def createArrayProducts(self, data):
         array = []
 
         for i in range(0, len(data), 1):
