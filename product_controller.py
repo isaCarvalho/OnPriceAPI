@@ -33,9 +33,9 @@ class ProductController (Controller):
             product = {
                 "id": data[0][0],
                 "name": data[0][1],
-                "qt": data[0][2],
+                "qt": data[0][4],
                 "unity": data[0][3],
-                "category": data[0][4],
+                "category": data[0][2],
                 "stamp": data[0][5],
                 "price": data[0][6],
                 "id_store": data[0][7]
