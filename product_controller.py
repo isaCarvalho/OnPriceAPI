@@ -26,7 +26,34 @@ class ProductController (Controller):
 
         return 'Data changed!'
 
+    def listStores(self, request):
+        data = Controller().list(request, "products")
+
+        return createArrayProducts(data)
+
+
     def listByStores(self, request):
         id = validate_field(request.args, 'id')
 
-        return query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id)) if id != -1 else messages['NO_ID']
+        data = query_statement('SELECT * FROM products WHERE id_store = {:d}'.format(id))
+
+        return createArrayProducts(data)
+
+    def createArrayProducts(data):
+        array = []
+
+        for (i in range(0, len(data), 1)):
+            product = {
+                "id": data[0][0],
+                "name": data[0][1],
+                "qt": data[0][2],
+                "unity": data[0][3],
+                "category": data[0][4],
+                "stamp": data[0][5],
+                "price": data[0][6],
+                "id_store": data[0][7]
+            }
+
+            array.append(product)
+
+        return array

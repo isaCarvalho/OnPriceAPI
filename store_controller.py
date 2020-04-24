@@ -38,4 +38,41 @@ class StoreController (Controller):
 
         statement = "SELECT * FROM stores WHERE name = '{}' AND password = '{}'".format(name, password)
 
-        return query_statement(statement)
+        store = None
+        if (len(data) != 0):
+            store = {
+                "id": data[0][0],
+                "name": data[0][1],
+                "password": data[0][2],
+                "cnpj": data[0][3],
+                "street": data[0][4],
+                "bairro": data[0][5],
+                "number": data[0][6],
+                "city": data[0][7],
+                "uf": data[0][8],
+                "time": data[0][9]
+            }
+
+        return store
+
+    def listStores(self, request):
+        data = Controller().list(request, "stores")
+        array = []
+
+        for (i in range(0, len(data), 1)):
+            store = {
+                "id": data[0][0],
+                "name": data[0][1],
+                "password": data[0][2],
+                "cnpj": data[0][3],
+                "street": data[0][4],
+                "bairro": data[0][5],
+                "number": data[0][6],
+                "city": data[0][7],
+                "uf": data[0][8],
+                "time": data[0][9]
+            }
+
+            array.append(store)
+
+        return array

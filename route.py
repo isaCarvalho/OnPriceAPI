@@ -22,7 +22,7 @@ def login():
 # Returns a store by id or a list of all the stores in the system
 @app.route('/' + baseUrlStores, methods = ['GET'])
 def getStores():
-    return jsonify(StoreController().list(request, 'stores'))
+    return jsonify(StoreController().listStores(request))
 
 # Inserts a store in the database
 @app.route('/' + baseUrlStores, methods = ['POST'])
@@ -44,7 +44,7 @@ def deleteStore():
 # Return a products by it's id or all products
 @app.route('/' + baseUrlProducts, methods = ['GET'])
 def getProducts():
-    return jsonify(ProductController().list(request, 'products'))
+    return jsonify(ProductController().listProducts(request, 'products'))
 
 # Insert a product
 @app.route('/' + baseUrlProducts, methods = ['POST'])
