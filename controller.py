@@ -12,8 +12,8 @@ class Controller:
         id = validate_field(request.args, 'id')
 
         if id == -1:
-            return messages['NO_ID'], 404
+            return messages['NO_ID']
 
         execute_statement('DELETE FROM {} WHERE id = {:d}'.format(table, id))
 
-        return 'Data changed!', 200
+        return 'Data changed!'
