@@ -9,7 +9,7 @@ class ProductController (Controller):
         data = request.json
 
         name = data.get('name')
-        quantity = data.get('quantity')
+        qt = data.get('qt')
         unity = data.get('unity')
         category = data.get('category')
         stamp = data.get('stamp')
@@ -18,9 +18,9 @@ class ProductController (Controller):
         id = validate_field(request.args, 'id')
 
         if (id == -1):
-            statement = "INSERT INTO products (name, quantity, unity, category, stamp, price, id_store) VALUES ('{}', {:d}, '{}', '{}', '{}', '{}', {:d})".format(name, quantity, unity, category, stamp, price, id_store)
+            statement = "INSERT INTO products (name, quantity, unity, category, stamp, price, id_store) VALUES ('{}', {:d}, '{}', '{}', '{}', '{}', {:d})".format(name, qt, unity, category, stamp, price, id_store)
         else:
-            statement = "UPDATE products SET name = '{}', quantity = {:d}, unity = '{}', category = '{}', stamp = '{}', price = '{}', id_store = {:d} WHERE id = {:d}".format(name, quantity, unity, category, stamp, price, id_store, id)
+            statement = "UPDATE products SET name = '{}', quantity = {:d}, unity = '{}', category = '{}', stamp = '{}', price = '{}', id_store = {:d} WHERE id = {:d}".format(name, qt, unity, category, stamp, price, id_store, id)
 
         execute_statement(statement)
 
