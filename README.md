@@ -4,25 +4,23 @@ This is the Python Flask API for OnPriceApp.
 
 # Endpoints:
 
-* / [GET]
+* / [GET] <br/>
 This is home.
 
-* /stores [GET]
+* /stores [GET|POST] <br/>
+Returns an array with all the stores in the system.
 
-You may pass the store id in the request if you want to return a specific store
+* /stores?id={id} [GET|PUT|DELETE] <br/>
+Returns a specific store
 
-* /stores?id={id} [PUT|POST|DELETE]
+* /products [GET|POST] <br/>
+Returns an array the products in the system.
 
-* /products [GET]
+* /product?id={id} [GET|PUT|DELETE] <br/>
+Returns a specific product
 
-You may pass the product id if you want to return a specific product
-
-* /product?id={id} [PUT|POST|DELETE]
-
-* /stores/products?id={id}
-
-Here you may pass the store id to list all the products of a specific store.
-If you do not pass anything, it will return the products grouped by stores.
+* /stores/products?id={id} [GET] <br/>
+Returns an array with a store's products.
 
 # Requisites
 
@@ -35,3 +33,9 @@ Run the packages.sh file to install all the packages to modify this API
 
 * Isabela Carvalho
 * All the contributors
+
+# Observations
+
+Make sure you install all the pip packages. To deploy this package, It was created
+a virtual enviroment. Do not forget to install gunicorn and make the `Procfile`
+if you want to deploy.
