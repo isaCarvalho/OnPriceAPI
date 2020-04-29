@@ -8,7 +8,7 @@ from product_controller import ProductController
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-CORS(app, "resources = {r"/*": {"origins": "*"}})
+CORS(app, resources = {r"/*": {"origins": "*"}})
 
 baseUrlStores = 'stores'
 baseUrlProducts = 'products'
